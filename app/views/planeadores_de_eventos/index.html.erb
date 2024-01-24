@@ -1,0 +1,18 @@
+<div class="container pt-5 pb-5">
+<p style="color: green"><%= notice %></p>
+
+<h1>Planeadores de eventos</h1>
+
+<div id="planeadores_de_eventos">
+  <% @planeadores_de_eventos.each do |planeadores_de_evento| %>
+    <%= render planeadores_de_evento %>
+    <p>
+      <%= link_to "Ver evento individual", planeadores_de_evento, class:"btn btn-primary" %>
+      
+     
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "Nuevo Evento", new_planeadores_de_evento_path, class:"btn btn-success" %>
+</div>

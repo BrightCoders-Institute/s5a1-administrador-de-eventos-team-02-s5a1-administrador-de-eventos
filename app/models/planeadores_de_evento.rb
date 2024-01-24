@@ -1,0 +1,2 @@
+class PlaneadoresDeEvento < ApplicationRecord
+end
