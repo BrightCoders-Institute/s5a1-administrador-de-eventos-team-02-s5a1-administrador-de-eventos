@@ -1,2 +1,0 @@
-class PlaneadoresDeEvento < ApplicationRecord
-end
