@@ -1,0 +1,12 @@
+<div class="container pt-5 pb-5">
+<h1>Editing planeadores de evento</h1>
+
+<%= render "form", planeadores_de_evento: @planeadores_de_evento %>
+
+<br>
+
+<div>
+  <%= link_to "Ver evento individual", @planeadores_de_evento, class:"btn btn-primary" %> |
+  <%= link_to "Volver", planeadores_de_eventos_path, class:"btn btn-secondary" %>
+</div>
+</div>

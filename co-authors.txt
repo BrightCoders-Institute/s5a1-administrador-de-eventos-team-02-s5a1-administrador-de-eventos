@@ -2,5 +2,5 @@ git commit -m "Tu mensaje de commit"
 
 Co-authored-by: Ramon Diaz <jramondiaz96@gmail.com>
 Co-authored-by: Yhoselin Sánchez <yossi2075.ys@gmail.com>
-Co-authored-by: AnaCarrizales <acarrizales2@ucol.mx>
 Co-authored-by: Ana Landin <alandin1@ucol.mx>
+Co-authored-by: AnaCarrizales <acarrizales2@ucol.mx>

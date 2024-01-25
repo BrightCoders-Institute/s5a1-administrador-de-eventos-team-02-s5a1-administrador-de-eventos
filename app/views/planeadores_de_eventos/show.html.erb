@@ -1,0 +1,12 @@
+<div class="container pt-5 pb-5">
+<p style="color: green"><%= notice %></p>
+
+<%= render @planeadores_de_evento %>
+
+<div class:"btn-group">
+  <%= link_to "Editar evento", edit_planeadores_de_evento_path(@planeadores_de_evento), class:"btn btn-warning", style:"color:white" %> |
+  <%= link_to "Volver", planeadores_de_eventos_path, class:"btn btn-secondary" %>
+
+  <%= button_to "Eliminar evento", @planeadores_de_evento, method: :delete, class:"btn btn-danger", style:"margin-top:30px" %>
+</div>
+</div>
