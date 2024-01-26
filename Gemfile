@@ -60,6 +60,8 @@ gem 'rubocop', '~> 1.52'
 
 gem 'rubycritic', '~> 4.9'
 
+gem 'htmlbeautifier', '~> 1.1', '>= 1.1.1'
+
 #gem 'reek', '~> 6.2'
 
 #gem 'parser', '~> 3.3', '>= 3.3.0.5'

@@ -10,18 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_23_235744) do
-  create_table "event_planners", force: :cascade do |t|
-    t.string "titulo"
-    t.text "descripcion"
-    t.datetime "fecha"
-    t.text "ubicacion"
-    t.float "costo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "planeadores_de_eventos", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2024_01_26_003021) do
+  create_table "events", force: :cascade do |t|
     t.string "titulo"
     t.text "descripcion"
     t.datetime "fecha"
