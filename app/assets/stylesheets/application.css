@@ -19,5 +19,52 @@
 }
 
 .events-wrapper {
-  padding:50px
+  padding: 50px;
+}
+
+.table-header-wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2em;
+}
+
+.field {
+  align-items: center;
+  margin: 20px auto;
+}
+
+.field {
+  margin-bottom: 15px;
+  margin-left: 40px;
+}
+
+.field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.field input[type="text"],
+.field input[type="datetime-local"],
+.field input[type="number"] {
+  box-sizing: border-box;
+  padding: 8px;
+}
+
+.field textarea {
+  box-sizing: border-box;
+  padding: 8px;
+  width: 100%;
+}
+
+.actions input[type="submit"] {
+  background-color: #4caf50;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin-left: 40px;
+  margin-top: 10px;
+  padding: 10px 15px;
 }
