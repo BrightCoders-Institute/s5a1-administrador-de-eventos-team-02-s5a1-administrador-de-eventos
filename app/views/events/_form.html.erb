@@ -1,9 +1,9 @@
-<%= form_with(model: @evento, local: true, class:"form-wrapper") do |form| %>
-  <% if @evento.errors.any? %>
+<%= form_with(model: evento, local: true, class:"form-wrapper") do |form| %>
+  <% if evento.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@evento.errors.count, "error") %> Evento:</h2>
+      <h2><%= pluralize(evento.errors.count, "error") %> Evento:</h2>
       <ul>
-        <% @evento.errors.full_messages.each do |message| %>
+        <% evento.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
