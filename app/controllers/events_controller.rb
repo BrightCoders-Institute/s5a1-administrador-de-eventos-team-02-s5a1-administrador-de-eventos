@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
 
    def index
     @eventos = Event.all
@@ -19,6 +19,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @evento.destroy
+    redirect_to events_path, notice: 'Evento eliminado exitosamente.'
+  end
+
   def new
     @evento = Event.new
   end
@@ -27,11 +32,11 @@ class EventsController < ApplicationController
     @evento = Event.new(event_params)
 
     if @evento.save
-      redirect_to events_path, notice: 'Evento creado exitosamente'
+      redirect_to events_path, notice: 'Evento creado exitosamente.'
     else
       render :new
     end
-  end
+  end 
 
   private
   def set_event

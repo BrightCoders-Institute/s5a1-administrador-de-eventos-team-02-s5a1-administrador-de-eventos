@@ -24,7 +24,7 @@
             <td><%= evento.ubicacion %></td>
             <td><%= evento.costo %></td>
             <td>
-              <%= link_to 'Mostrar', event_path(evento.id) %>
+              <%= link_to 'Mostrar', event_path(evento.id), class:"btn btn-primary" %>
             </td>
           </tr>
         <% end %>
