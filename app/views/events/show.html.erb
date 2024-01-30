@@ -1,5 +1,5 @@
 <div class="start-flex">
-  <%= render @evento_partial %>
+  <%= render @evento %>
   <div class="button-wrapper">
     <%= link_to 'Editar', edit_event_path(@evento), class:"btn btn-warning", style:"color:white" %>
     <%= button_to 'Eliminar Evento', @evento, method: :delete, class: 'btn btn-danger' %>

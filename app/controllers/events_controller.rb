@@ -3,11 +3,10 @@ class EventsController < ApplicationController
 
    def index
     @eventos = Event.all
-    @evento_partial = 'event'
   end
 
   def show
-    @evento_partial = 'event'
+    @evento
   end
 
   def edit
