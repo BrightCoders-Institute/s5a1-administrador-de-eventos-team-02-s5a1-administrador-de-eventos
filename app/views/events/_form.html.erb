@@ -1,0 +1,35 @@
+<%= form_with(model: @evento, local: true, class:"form-wrapper") do |form| %>
+  <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@evento.errors.count, "error") %> Evento:</h2>
+      <ul>
+        <% @evento.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :titulo %>
+    <%= form.text_field :titulo, class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= form.label :descripcion %>
+    <%= form.text_field :descripcion, rows: 5, class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= form.label :fecha %>
+    <%= form.datetime_field :fecha, class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= form.label :ubicacion %>
+    <%= form.text_field :ubicacion, class:"form-control" %>
+  </div>
+  <div class="field">
+    <%= form.label :costo %>
+    <%= form.number_field :costo, class:"form-control" %>
+  </div>
+  <div class="actions">
+    <%= form.submit action_name=='new' ? 'Agregar Evento' : 'Guardar Cambios', class:"btn btn-success" %>
+  </div>
+<% end %>
