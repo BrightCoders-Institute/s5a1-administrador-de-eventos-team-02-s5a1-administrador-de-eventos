@@ -1,7 +1,9 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :require_login
+  helper_method :current_user
 
-   def index
+  def index
     @eventos = Event.all
   end
 
@@ -46,6 +48,17 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo)
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+  def require_login
+    unless current_user
+      flash[:alert] = 'Debes iniciar sesión para acceder a esta página'
+      redirect_to login_path
+    end
   end
 
 end

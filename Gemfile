@@ -62,6 +62,8 @@ gem 'rubycritic', '~> 4.9'
 
 gem 'htmlbeautifier', '~> 1.1', '>= 1.1.1'
 
+gem 'bcrypt', '~> 3.1', '>= 3.1.11'
+
 #gem 'reek', '~> 6.2'
 
 #gem 'parser', '~> 3.3', '>= 3.3.0.5'

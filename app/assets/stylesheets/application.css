@@ -50,7 +50,7 @@
 }
 
 .start-flex {
-  align-items: flex-start;
+  align-items: center;
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -72,4 +72,12 @@
   margin-bottom: 15px;
   padding: 10px;
   transition: 0.5s all ease;
+}
+
+.navbar-nav {
+  gap:15px
+}
+
+.login-form {
+  width: 400px;
 }

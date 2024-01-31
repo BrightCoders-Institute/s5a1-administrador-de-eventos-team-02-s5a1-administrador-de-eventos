@@ -1,0 +1,9 @@
+<div class="start-flex">
+  <h1>Inicia Sesión</h1>
+  <% if flash[:alert].present? %>
+    <div class="alert alert-danger mt-3">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <%= render 'form', session: @session %>
+</div>
