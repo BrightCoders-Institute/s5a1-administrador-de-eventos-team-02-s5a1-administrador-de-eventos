@@ -12,9 +12,6 @@ class Users::SessionsController < Devise::SessionsController
     end
   end
 
-  def destroy
-  end
-
   protected
 
   def configure_sign_in_params

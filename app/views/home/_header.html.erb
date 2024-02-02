@@ -19,7 +19,7 @@
           <%= link_to "Iniciar", events_path, class: "link" %>
         </li>
           <li class="nav-item active">
-            <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
+            <%= button_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
           </li>
         <% else %>
           <li class="nav-item active">
