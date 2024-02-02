@@ -1,0 +1,22 @@
+<div class="start-flex form-wrapper">
+  <h2 class="text-center">Iniciar Sesión</h2>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
+    <div class="field">
+      <%= f.label :Contraseña %>
+      <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+    </div>
+    <% if devise_mapping.rememberable? %>
+      <div class="field d-flex">
+        <%= f.check_box :remember_me %>
+        <%= f.label :Recuérdame %>
+      </div>
+    <% end %>
+    <div class="actions">
+      <%= f.submit "Iniciar Sesión", class:"btn btn-success" %>
+    </div>
+  <% end %>
+</div>

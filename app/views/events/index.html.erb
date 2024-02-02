@@ -1,34 +1,36 @@
-<div class="events-wrapper">
-  <div class="table-responsive">
-    <div class="table-header-wrapper">
-      <h1>Lista de Eventos</h1>
-      <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
-    </div>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Titulo</th>
-          <th>Descripción</th>
-          <th>Fecha</th>
-          <th>Ubicación</th>
-          <th>Costo</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @eventos.each do |evento| %>
+<% if user_signed_in? %>
+  <div class="events-wrapper">
+    <div class="table-responsive">
+      <div class="table-header-wrapper">
+        <h1>Lista de Eventos</h1>
+        <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
+      </div>
+      <table class="table table-striped">
+        <thead>
           <tr>
-            <td><%= evento.titulo %></td>
-            <td><%= evento.descripcion %></td>
-            <td><%= evento.fecha %></td>
-            <td><%= evento.ubicacion %></td>
-            <td><%= evento.costo %></td>
-            <td>
-              <%= link_to 'Mostrar', event_path(evento.id), class:"btn btn-primary" %>
-            </td>
+            <th>Titulo</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Ubicación</th>
+            <th>Costo</th>
+            <th>Acciones</th>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          <% @eventos.each do |evento| %>
+            <tr>
+              <td><%= evento.titulo %></td>
+              <td><%= evento.descripcion %></td>
+              <td><%= evento.fecha %></td>
+              <td><%= evento.ubicacion %></td>
+              <td><%= evento.costo %></td>
+              <td>
+                <%= link_to 'Mostrar', event_path(evento.id), class:"btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+<% end %>

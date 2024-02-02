@@ -1,7 +1,13 @@
+# frozen_string_literal: true
+
+# EventsController
+#
+# Controlador para gestionar eventos.
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
-   def index
+  def index
     @eventos = Event.all
   end
 
@@ -29,7 +35,7 @@ class EventsController < ApplicationController
     @evento = Event.new
   end
 
-   def create
+  def create
     @evento = Event.new(event_params)
 
     if @evento.save
@@ -37,9 +43,10 @@ class EventsController < ApplicationController
     else
       render :new
     end
-  end 
+  end
 
   private
+
   def set_event
     @evento = Event.find(params[:id])
   end
@@ -47,5 +54,4 @@ class EventsController < ApplicationController
   def event_params
     params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo)
   end
-
 end
