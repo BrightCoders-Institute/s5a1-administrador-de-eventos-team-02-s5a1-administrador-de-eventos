@@ -2,6 +2,8 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
+  attr_accessible :name, :email, :password, :password_confirmation, :current_password
+
 
   def new
   end

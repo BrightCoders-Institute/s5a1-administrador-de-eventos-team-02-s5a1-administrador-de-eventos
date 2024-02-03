@@ -94,3 +94,7 @@
 .form-wrapper .d-flex label {
   margin-bottom: 0;
 }
+
+.navbar-nav {
+  gap: 10px;
+}
