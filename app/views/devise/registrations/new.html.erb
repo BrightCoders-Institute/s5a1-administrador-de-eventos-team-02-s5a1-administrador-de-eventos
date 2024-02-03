@@ -1,17 +1,14 @@
 <div class="start-flex form-wrapper">
   <h2 class="text-center">Registrarse</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post }) do |f| %>
     <div class="field">
       <%= f.label :nombre %>
       <%= f.text_field :name, autofocus: true, class: "form-control" %>
     </div>
-
     <div class="field">
       <%= f.label :correo_electrónico %>
       <%= f.email_field :email, autocomplete: "email", class: "form-control" %>
     </div>
-
     <div class="field">
       <%= f.label :contraseña %>
       <% if @minimum_password_length %>
@@ -19,12 +16,10 @@
       <% end %><br />
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
     </div>
-
     <div class="field">
       <%= f.label :confirmar_contraseña %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
     </div>
-
     <div class="actions">
       <%= f.submit "Registrarse", class: "btn btn-success" %>
     </div>
