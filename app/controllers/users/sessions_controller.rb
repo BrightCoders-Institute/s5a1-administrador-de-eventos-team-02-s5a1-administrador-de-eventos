@@ -2,6 +2,8 @@
 
 class Users::SessionsController < Devise::SessionsController
   before_action :configure_sign_in_params, only: [:create]
+  attr_accessible :name
+
 
   def new
   end
@@ -10,9 +12,6 @@ class Users::SessionsController < Devise::SessionsController
     super do |resource|
       BackgroundWorker.trigger(resource)
     end
-  end
-
-  def destroy
   end
 
   protected

@@ -16,16 +16,22 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Iniciar", events_path, class: "link" %>
+          <%= link_to "Eventos", events_path, class: "btn btn-link" %>
         </li>
-          <li class="nav-item active">
-            <%= link_to 'Cerrar sesión', destroy_user_session_path, method: :delete %>
-          </li>
+        <li class="nav-item active">
+          <%= button_to 'Cerrar sesión', destroy_user_session_path, method:
+          :delete, class:"btn btn-link" %>
+        </li>
+         <li class="nav-item active">
+          <%= link_to "Mi cuenta", edit_user_registration_path, class: "btn btn-link" %>
+        </li>
         <% else %>
-          <li class="nav-item active">
-            <%= link_to 'Iniciar sesión', new_user_session_path %>
-          </li>
-          
+        <li class="nav-item active">
+          <%= link_to 'Iniciar sesión', new_user_session_path %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to 'Registrarse', new_user_registration_path %>
+        </li>
         <% end %>
       </ul>
     </div>

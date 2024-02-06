@@ -4,7 +4,5 @@ Rails.application.routes.draw do
   
   root 'home#index'
   
-  Rails.application.routes.draw do
-    devise_for :users
-  end
+  devise_for :users
 end
