@@ -16,7 +16,10 @@
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
         <li class="nav-item active">
-          <%= link_to "Eventos", events_path, class: "btn btn-link" %>
+          <%= link_to "Eventos públicos", events_path, class: "btn btn-link" %>
+        </li>
+        <li class="nav-item active">
+          <%= link_to "Mis eventos", my_events_path(current_user.name), class: "btn btn-link" %>
         </li>
         <li class="nav-item active">
           <%= button_to 'Cerrar sesión', destroy_user_session_path, method:

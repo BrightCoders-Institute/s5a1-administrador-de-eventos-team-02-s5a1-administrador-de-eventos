@@ -32,17 +32,21 @@ class EventsController < ApplicationController
   end
 
   def new
-    @evento = Event.new
+    @evento = current_user.events.new
   end
 
   def create
-    @evento = Event.new(event_params)
+    @evento = current_user.events.new(event_params)
 
     if @evento.save
       redirect_to events_path, notice: 'Evento creado exitosamente.'
     else
       render :new
     end
+  end
+
+  def my_events
+    @eventos = current_user.events
   end
 
   private
