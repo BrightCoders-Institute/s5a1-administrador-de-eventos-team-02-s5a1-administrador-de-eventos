@@ -1,0 +1,8 @@
+<h1>Editar Imagen del Evento</h1>
+<%= form_with(model: @evento, url: update_image_event_path(@evento), method: :patch, local: true) do |form| %>
+  <div class="field">
+    <%= form.label :image, 'Nueva Imagen' %>
+    <%= form.file_field :image %>
+  </div>
+  <%= form.submit 'Actualizar Imagen', class: 'btn btn-primary mt-3' %>
+<% end %>
