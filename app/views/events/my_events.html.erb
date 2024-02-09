@@ -1,0 +1,41 @@
+<% if current_user %>
+    <div class="events-wrapper">
+      <div class="table-responsive">
+        <div class="table-header-wrapper">
+          <h1>Lista de Eventos</h1>
+          <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
+        </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Imagen</th>
+              <!-- Nuevo encabezado para la columna de imagen -->
+              <th>Titulo</th>
+              <th>Descripción</th>
+              <th>Fecha</th>
+              <th>Ubicación</th>
+              <th>Costo</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @eventos.each do |evento| %>
+              <tr>
+                <td>
+                  <%= image_tag url_for(evento.image), class: "event-image" if evento.image.attached? %>
+                </td>
+                <td><%= evento.titulo %></td>
+                <td><%= evento.descripcion %></td>
+                <td><%= evento.fecha %></td>
+                <td><%= evento.ubicacion %></td>
+                <td><%= evento.costo %></td>
+                <td>
+                  <%= link_to 'Mostrar', event_path(evento), class: "btn btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+<% end %>

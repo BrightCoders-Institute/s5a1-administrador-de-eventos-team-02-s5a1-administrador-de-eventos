@@ -8,6 +8,8 @@
       <table class="table table-striped">
         <thead>
           <tr>
+            <th>Imagen</th>
+            <!-- Nuevo encabezado para la columna de imagen -->
             <th>Titulo</th>
             <th>Descripción</th>
             <th>Fecha</th>
@@ -19,6 +21,9 @@
         <tbody>
           <% @eventos.each do |evento| %>
             <tr>
+              <td>
+                <%= image_tag url_for(evento.image),class: "event-image" if evento.image.attached?  %>
+              </td>
               <td><%= evento.titulo %></td>
               <td><%= evento.descripcion %></td>
               <td><%= evento.fecha %></td>
