@@ -8,11 +8,15 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:tipo_evento].present? || params[:fecha_inicio].present? || params[:fecha_final].present?
-      @eventos = filtrar_eventos(params[:tipo_evento], params[:fecha_inicio], params[:fecha_final])
-    else
-      @eventos = Event.all
-    end
+    @eventos = Event.all
+end
+
+  def events_filters
+    if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
+    @eventos = filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final])
+  else
+    @eventos = Event.all
+  end
   end
 
   def show
@@ -70,19 +74,13 @@ class EventsController < ApplicationController
     redirect_to @event, notice: 'Imagen eliminada correctamente.'
   end
 
-  def events_filters
-    @filtro = Filtro.new
-    @eventos = Event.all
-  end
-
   private
 
-  def filtrar_eventos(tipo_evento, fecha_inicio, fecha_final)
+  def filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
     eventos = Event.all
 
-    eventos = eventos.where(tipo_de_eventos: tipo_evento) if tipo_evento.present?
-    eventos = eventos.where('fecha >= ?', fecha_inicio.to_date) if fecha_inicio.present?
-    eventos = eventos.where('fecha <= ?', fecha_final.to_date) if fecha_final.present?
+    eventos = eventos.where(tipo_de_eventos: tipo_de_eventos) if tipo_de_eventos.present?
+    eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day) if fecha_inicio.present? && fecha_final.present?
 
     eventos
   end
