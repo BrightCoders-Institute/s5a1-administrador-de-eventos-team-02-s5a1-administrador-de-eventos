@@ -8,7 +8,11 @@ class EventsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @eventos = Event.all
+    if params[:tipo_evento].present? || params[:fecha_inicio].present? || params[:fecha_final].present?
+      @eventos = filtrar_eventos(params[:tipo_evento], params[:fecha_inicio], params[:fecha_final])
+    else
+      @eventos = Event.all
+    end
   end
 
   def show
@@ -72,6 +76,16 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def filtrar_eventos(tipo_evento, fecha_inicio, fecha_final)
+    eventos = Event.all
+
+    eventos = eventos.where(tipo_de_eventos: tipo_evento) if tipo_evento.present?
+    eventos = eventos.where('fecha >= ?', fecha_inicio.to_date) if fecha_inicio.present?
+    eventos = eventos.where('fecha <= ?', fecha_final.to_date) if fecha_final.present?
+
+    eventos
+  end
 
   def set_event
     @evento = Event.find(params[:id])
