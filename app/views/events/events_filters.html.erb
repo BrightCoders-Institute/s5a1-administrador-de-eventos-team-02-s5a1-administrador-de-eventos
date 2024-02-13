@@ -2,6 +2,29 @@
   <div class="events-wrapper">
     <div class="table-responsive">
       <div class="table-header-wrapper">
+        <%= form_tag events_filters_path, method: :get do %>
+          <h1>Lista de Eventos</h1>
+          <div class="form-group">
+            <%= label_tag :tipo_evento, "Tipo de evento" %>
+            <%= select_tag :tipo_evento, options_for_select(["Público", "Privado"]), class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :fecha_inicio, "Fecha inicio" %>
+            <%= date_field_tag :fecha_inicio, nil, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :fecha_final, "Fecha final" %>
+            <%= date_field_tag :fecha_final, nil, class: "form-control" %>
+          </div>
+          <%= submit_tag "Filtrar", class: "btn btn-primary" %>
+        <% end %>
+        <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+  <div class="events-wrapper">
+    <div class="table-responsive">
+      <div class="table-header-wrapper">
         <h1>Lista de Eventos</h1>
         <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
       </div>

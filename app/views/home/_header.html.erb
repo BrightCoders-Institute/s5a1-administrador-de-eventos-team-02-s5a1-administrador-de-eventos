@@ -15,6 +15,9 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <% if user_signed_in? %>
+         <li class="nav-item active">
+          <%= link_to "Eventos con filtro", events_filters_path, class: "btn btn-link" %>
+        </li>
         <li class="nav-item active">
           <%= link_to "Eventos públicos", events_path, class: "btn btn-link" %>
         </li>

@@ -66,6 +66,11 @@ class EventsController < ApplicationController
     redirect_to @event, notice: 'Imagen eliminada correctamente.'
   end
 
+  def events_filters
+    @filtro = Filtro.new
+    @eventos = Event.all
+  end
+
   private
 
   def set_event
@@ -73,6 +78,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :image)
+    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos, :image)
   end
 end

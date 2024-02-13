@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   devise_for :users
 
   get ':name/my_events', to: 'events#my_events', as: 'my_events'
+  get 'events_filters', to: 'events#events_filters', as: 'events_filters'
 end
