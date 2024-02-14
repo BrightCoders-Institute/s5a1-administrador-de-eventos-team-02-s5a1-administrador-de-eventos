@@ -1,0 +1,70 @@
+<%= form_tag events_filters_path, method: :get do %>
+  <div class="row">
+    <div class="col-lg-3 col-md-3 col-12">
+      <div class="field">
+        <%= label_tag :tipo_de_eventos, "Tipo de evento" %>
+        <%= select_tag :tipo_de_eventos, options_for_select(["Público", "Privado"]), class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-12">
+      <div class="field">
+        <%= label_tag :fecha_inicio, "Fecha inicio" %>
+        <%= date_field_tag :fecha_inicio, nil, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-12">
+      <div class="field">
+        <%= label_tag :fecha_final, "Fecha final" %>
+        <%= date_field_tag :fecha_final, nil, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-12 d-flex" style="justify-content:center;align-items:center; gap:10px">
+      <%= submit_tag "Filtrar", class: "btn btn-primary" %>
+      <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
+<% if @eventos.present?%>
+  <div class="events-wrapper">
+    <div class="table-responsive">
+      <div class="table-header-wrapper">
+        <h1>Lista de Eventos</h1>
+        <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Titulo</th>
+            <th>Descripción</th>
+            <th>Fecha</th>
+            <th>Ubicación</th>
+            <th>Costo</th>
+            <th>Tipo</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @eventos.each do |evento| %>
+            <tr>
+              <td>
+                <%= image_tag url_for(evento.image), class: "event-image" if evento.image.attached? %>
+              </td>
+              <td><%= evento.titulo %></td>
+              <td><%= evento.descripcion %></td>
+              <td><%= evento.fecha %></td>
+              <td><%= evento.ubicacion %></td>
+              <td><%= evento.costo %></td>
+              <td><%= evento.tipo_de_eventos %></td>
+              <td>
+                <%= link_to 'Mostrar', event_path(evento.id), class: "btn btn-primary" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  <p class="mt-5">No se encontraron eventos.</p>
+<% end %>

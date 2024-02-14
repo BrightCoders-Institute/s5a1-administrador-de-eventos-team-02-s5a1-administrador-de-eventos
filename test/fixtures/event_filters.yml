@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_de_eventos: MyString
+  fecha_inicio: 2024-02-12
+  fecha_final: 2024-02-12
+
+two:
+  tipo_de_eventos: MyString
+  fecha_inicio: 2024-02-12
+  fecha_final: 2024-02-12

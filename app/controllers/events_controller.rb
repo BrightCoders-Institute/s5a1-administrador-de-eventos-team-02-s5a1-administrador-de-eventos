@@ -9,6 +9,14 @@ class EventsController < ApplicationController
 
   def index
     @eventos = Event.all
+end
+
+  def events_filters
+    if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
+    @eventos = filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final])
+  else
+    @eventos = Event.all
+  end
   end
 
   def show
@@ -68,11 +76,20 @@ class EventsController < ApplicationController
 
   private
 
+  def filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
+    eventos = Event.all
+
+    eventos = eventos.where(tipo_de_eventos: tipo_de_eventos) if tipo_de_eventos.present?
+    eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day) if fecha_inicio.present? && fecha_final.present?
+
+    eventos
+  end
+
   def set_event
     @evento = Event.find(params[:id])
   end
 
   def event_params
-    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :image)
+    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos, :image)
   end
 end

@@ -9,12 +9,12 @@
         <thead>
           <tr>
             <th>Imagen</th>
-            <!-- Nuevo encabezado para la columna de imagen -->
             <th>Titulo</th>
             <th>Descripción</th>
             <th>Fecha</th>
             <th>Ubicación</th>
             <th>Costo</th>
+            <th>Tipo</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -29,6 +29,7 @@
               <td><%= evento.fecha %></td>
               <td><%= evento.ubicacion %></td>
               <td><%= evento.costo %></td>
+              <td><%= evento.tipo_de_eventos %></td>
               <td>
                 <%= link_to 'Mostrar', event_path(evento.id), class:"btn btn-primary" %>
               </td>
