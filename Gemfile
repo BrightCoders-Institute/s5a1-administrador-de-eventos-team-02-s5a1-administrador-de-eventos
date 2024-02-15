@@ -65,3 +65,5 @@ gem 'htmlbeautifier', '~> 1.1', '>= 1.1.1'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 
 gem 'image_processing', '~> 1.2'
+
+gem 'will_paginate', '~> 3.3'
