@@ -13,9 +13,9 @@ end
 
   def events_filters
     if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
-    @eventos = filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final])
+    @eventos = filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
   else
-    @eventos = Event.all
+    @eventos = Event.paginate(page: params[:page], per_page: 5)
   end
   end
 
@@ -46,7 +46,7 @@ end
     @evento = current_user.events.new(event_params)
 
     if @evento.save
-      redirect_to events_path, notice: 'Evento creado exitosamente.'
+      redirect_to events_filters_path, notice: 'Evento creado exitosamente.'
     else
       render :new
     end
