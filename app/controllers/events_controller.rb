@@ -9,14 +9,16 @@ class EventsController < ApplicationController
 
   def index
     @eventos = Event.all
-end
+  end
 
   def events_filters
-    if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
-    @eventos = filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
-  else
-    @eventos = Event.paginate(page: params[:page], per_page: 5)
-  end
+    @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
+                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(
+                   page: params[:page], per_page: 5
+                 )
+               else
+                 Event.paginate(page: params[:page], per_page: 5)
+               end
   end
 
   def show
@@ -79,8 +81,10 @@ end
   def filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
     eventos = Event.all
 
-    eventos = eventos.where(tipo_de_eventos: tipo_de_eventos) if tipo_de_eventos.present?
-    eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day) if fecha_inicio.present? && fecha_final.present?
+    eventos = eventos.where(tipo_de_eventos:) if tipo_de_eventos.present?
+    if fecha_inicio.present? && fecha_final.present?
+      eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day)
+    end
 
     eventos
   end
