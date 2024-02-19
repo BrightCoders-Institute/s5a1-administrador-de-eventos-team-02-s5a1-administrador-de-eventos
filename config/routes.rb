@@ -12,7 +12,8 @@ Rails.application.routes.draw do
   # Configuración de las rutas de Devise
   devise_for :users, controllers: {
     registrations: 'users/registrations', # Controlador personalizado para registro
-    confirmations: 'users/confirmations'  # Controlador personalizado para confirmación del correo electrónico
+    confirmations: 'users/confirmations',  # Controlador personalizado para confirmación del correo electrónico
+    passwords: 'users/passwords'  
   }
 
   get ':name/my_events', to: 'events#my_events', as: 'my_events'
