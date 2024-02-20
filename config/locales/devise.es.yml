@@ -25,8 +25,10 @@ es:
         subject: "Cambio de correo electrónico"
       password_change:
         subject: "Cambio de contraseña"
+      reset_password_token:
+        blank: "no puede estar en blanco"
     omniauth_callbacks:
-      failure: "No se pudo autenticar desde %{kind} debido a \"%{reason}\"."
+      failure: 'No se pudo autenticar desde %{kind} debido a "%{reason}".'
       success: "Autenticación exitosa desde la cuenta %{kind}."
     passwords:
       no_token: "No puedes acceder a esta página sin venir de un correo electrónico de restablecimiento de contraseña. Si vienes de un correo electrónico de restablecimiento de contraseña, asegúrate de haber utilizado la URL completa proporcionada."

@@ -1,0 +1,13 @@
+<div class="start-flex form-wrapper">
+  <h2>¿Olvidaste tu contraseña?</h2>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+    <div class="field mt-3">
+      <%= f.label :email %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
+    <div>
+      <%= f.submit "Enviar correo", class:"btn btn-primary mt-3" %>
+    </div>
+  <% end %>
+</div>
