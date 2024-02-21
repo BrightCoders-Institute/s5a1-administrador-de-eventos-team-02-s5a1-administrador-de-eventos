@@ -9,12 +9,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  # Configuración de las rutas de Devise
   devise_for :users, controllers: {
-    registrations: 'users/registrations', # Controlador personalizado para registro
-    confirmations: 'users/confirmations',  # Controlador personalizado para confirmación del correo electrónico
-    passwords: 'users/passwords'  
-  }
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords'
+}
 
   get ':name/my_events', to: 'events#my_events', as: 'my_events'
   get 'events_filters', to: 'events#events_filters', as: 'events_filters'
