@@ -3,4 +3,5 @@ class Event < ApplicationRecord
   belongs_to :user
 
   validates :tipo_de_eventos, presence: true
+  validates :reminder_datetime, presence: true
 end

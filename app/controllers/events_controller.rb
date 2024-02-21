@@ -13,12 +13,10 @@ class EventsController < ApplicationController
 
   def events_filters
     @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
-                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(
-                   page: params[:page], per_page: 5
-                 )
-               else
-                 Event.paginate(page: params[:page], per_page: 5)
-               end
+    filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
+    else
+      Event.paginate(page: params[:page], per_page: 5)
+    end
   end
 
   def show
@@ -48,6 +46,7 @@ class EventsController < ApplicationController
     @evento = current_user.events.new(event_params)
 
     if @evento.save
+      ReminderJob.set(wait_until: @evento.reminder_datetime).perform_later(current_user.id, @evento.titulo, @evento.reminder_datetime)
       redirect_to events_filters_path, notice: 'Evento creado exitosamente.'
     else
       render :new
@@ -94,6 +93,6 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos, :image)
+    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos, :reminder_datetime, :image)
   end
 end

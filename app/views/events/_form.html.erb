@@ -34,6 +34,10 @@
     <%= form.select :tipo_de_eventos, options_for_select(["Público", "Privado"]), {}, class: "form-control" %>
   </div>
   <div class="field">
+    <%= form.label :reminder_datetime, "Seleccionar fecha de recordatorio" %>
+    <%= form.datetime_field :reminder_datetime, class:"form-control" %>
+  </div>
+  <div class="field">
     <%= form.label :image %>
     <%= form.file_field :image, direct_upload: true %>
   </div>
