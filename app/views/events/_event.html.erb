@@ -2,6 +2,7 @@
   <h1><%= @evento.titulo %></h1>
   <p><strong>Descripción:</strong> <%= @evento.descripcion %></p>
   <p><strong>Fecha:</strong> <%= @evento.fecha %></p>
+  <p><strong>Fecha de recordatorio:</strong> <%= @evento.reminder_datetime %></p>
   <p><strong>Ubicación:</strong> <%= @evento.ubicacion %></p>
   <p><strong>Costo:</strong> <%= @evento.costo %></p>
   <%= image_tag url_for(@evento.image), class: "event-image large-image" if @evento.image.attached? %>
