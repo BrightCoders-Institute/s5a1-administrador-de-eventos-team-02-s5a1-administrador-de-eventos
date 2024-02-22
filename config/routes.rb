@@ -17,4 +17,5 @@ Rails.application.routes.draw do
 
   get ':name/my_events', to: 'events#my_events', as: 'my_events'
   get 'events_filters', to: 'events#events_filters', as: 'events_filters'
+  get 'export', to: 'events#export', as: 'export', format: 'csv'
 end
