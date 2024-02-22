@@ -85,7 +85,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       format.csv do
-        send_data eventos_to_csv(@eventos), filename: "eventos_exportados.csv"
+        send_data eventos_to_csv(@eventos.all), filename: "eventos_exportados.csv"
       end
     end
   end
