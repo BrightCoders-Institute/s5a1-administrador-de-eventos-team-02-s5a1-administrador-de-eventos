@@ -78,15 +78,18 @@ class EventsController < ApplicationController
   private
 
   def filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
-    eventos = Event.all
+  eventos = Event.all
 
-    eventos = eventos.where(tipo_de_eventos:) if tipo_de_eventos.present?
-    if fecha_inicio.present? && fecha_final.present?
-      eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day)
-    end
-
-    eventos
+  # Filtra por tipo_de_eventos si está presente y no es "Todos"
+  eventos = eventos.where(tipo_de_eventos: tipo_de_eventos) if tipo_de_eventos.present? && tipo_de_eventos != "Todos"
+  
+  if fecha_inicio.present? && fecha_final.present?
+    eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day)
   end
+
+  eventos
+end
+
 
   def set_event
     @evento = Event.find(params[:id])
