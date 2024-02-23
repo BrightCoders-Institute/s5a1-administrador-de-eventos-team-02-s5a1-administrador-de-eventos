@@ -13,11 +13,13 @@ class EventsController < ApplicationController
   end
 
   def events_filters
-    @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?) 
-      filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
-      else
-        Event.paginate(page: params[:page], per_page: 5)
-      end
+    @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
+                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(
+                   page: params[:page], per_page: 5
+                 )
+               else
+                 Event.paginate(page: params[:page], per_page: 5)
+               end
   end
 
   def show
@@ -47,7 +49,8 @@ class EventsController < ApplicationController
     @evento = current_user.events.new(event_params)
 
     if @evento.save
-      ReminderJob.set(wait_until: @evento.reminder_datetime).perform_later(current_user.id, @evento.titulo, @evento.reminder_datetime)
+      ReminderJob.set(wait_until: @evento.reminder_datetime).perform_later(current_user.id, @evento.titulo,
+                                                                           @evento.reminder_datetime)
       redirect_to events_filters_path, notice: 'Evento creado exitosamente.'
     else
       render :new
@@ -77,28 +80,29 @@ class EventsController < ApplicationController
   end
 
   def export
-    tipo_de_eventos = params[:tipo_de_eventos]
-    fecha_inicio = params[:fecha_inicio]
-    fecha_final = params[:fecha_final]
-
-    @eventos = filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final).paginate(page: params[:page], per_page: 10)
-
+      tipo_de_eventos = params[:tipo_de_eventos]
+     fecha_inicio = params[:fecha_inicio]
+      fecha_final = params[:fecha_final]
+    # puts "Hola no hay tipo de eventos #{tipo_de_eventos}"
+    # puts tipo_de_eventos
+    
+    @eventos = filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
+    # puts(eventos)
     respond_to do |format|
       format.csv do
-        send_data eventos_to_csv(@eventos.all), filename: "eventos_exportados.csv"
+        send_data eventos_to_csv(@eventos), filename: 'eventos_exportados.csv'
       end
     end
   end
-
 
   private
 
   def eventos_to_csv(eventos)
     CSV.generate(headers: true) do |csv|
       # Agrega los encabezados
-      csv << ["Titulo", "Descripción", "Fecha", "Ubicación", "Costo", "Tipo de Evento"]
+      csv << ['Titulo', 'Descripción', 'Fecha', 'Ubicación', 'Costo', 'Tipo de Evento']
 
-      # Agrega los datos de cada evento
+      # Agrega los datos de cada evento que cumple con el filtro de tipo_de_evento
       eventos.each do |evento|
         csv << [evento.titulo, evento.descripcion, evento.fecha, evento.ubicacion, evento.costo, evento.tipo_de_eventos]
       end
@@ -109,12 +113,12 @@ class EventsController < ApplicationController
     eventos = Event.all
 
     # Filtra por tipo_de_eventos si está presente y no es "Todos"
-    eventos = eventos.where(tipo_de_eventos: tipo_de_eventos) if tipo_de_eventos.present? && tipo_de_eventos != 'Todos'
+    eventos = eventos.where(tipo_de_eventos:) if tipo_de_eventos.present? && tipo_de_eventos != 'Todos'
 
     if fecha_inicio.present? && fecha_final.present?
       eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day)
     end
-
+    puts(eventos)
     eventos
   end
 
@@ -123,6 +127,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos, :reminder_datetime, :image)
+    params.require(:event).permit(:titulo, :descripcion, :fecha, :ubicacion, :costo, :tipo_de_eventos,
+                                  :reminder_datetime, :image)
   end
 end

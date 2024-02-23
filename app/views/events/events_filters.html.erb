@@ -30,7 +30,7 @@
       <div class="table-header-wrapper">
         <h1>Lista de Eventos</h1>
         <%= link_to 'Agregar Nuevo Evento', new_event_path, class: "btn btn-primary" %>
-        <%= link_to 'Exportar Eventos a CSV', export_path, class: "btn btn-success" %>
+        <%= link_to 'Exportar Eventos a CSV', export_path(tipo_de_eventos: params[:tipo_de_eventos], fecha_inicio: params[:fecha_inicio], fecha_final: params[:fecha_final], format: "csv"), class: "btn btn-success" %>
       </div>
       <table class="table table-striped">
         <thead>

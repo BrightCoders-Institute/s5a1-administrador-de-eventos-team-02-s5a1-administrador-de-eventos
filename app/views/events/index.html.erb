@@ -22,7 +22,7 @@
         <tbody>
           <% @eventos.each do |evento| %>
             <tr>
-            <td><%= evento.id %></td>
+              <td><%= evento.id %></td>
               <td>
                 <%= image_tag url_for(evento.image),class: "event-image" if evento.image.attached?  %>
               </td>
