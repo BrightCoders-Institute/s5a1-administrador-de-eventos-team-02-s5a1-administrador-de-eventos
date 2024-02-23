@@ -115,7 +115,6 @@ class EventsController < ApplicationController
     if fecha_inicio.present? && fecha_final.present?
       eventos = eventos.where(fecha: fecha_inicio.to_datetime.beginning_of_day..fecha_final.to_datetime.end_of_day)
     end
-    puts(eventos)
     eventos
   end
 
