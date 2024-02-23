@@ -14,9 +14,7 @@ class EventsController < ApplicationController
 
   def events_filters
     @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
-                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(
-                   page: params[:page], per_page: 5
-                 )
+                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
                else
                  Event.paginate(page: params[:page], per_page: 5)
                end
@@ -83,8 +81,6 @@ class EventsController < ApplicationController
       tipo_de_eventos = params[:tipo_de_eventos]
      fecha_inicio = params[:fecha_inicio]
       fecha_final = params[:fecha_final]
-    # puts "Hola no hay tipo de eventos #{tipo_de_eventos}"
-    # puts tipo_de_eventos
     
     @eventos = filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
     # puts(eventos)
