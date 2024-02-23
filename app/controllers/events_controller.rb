@@ -14,7 +14,9 @@ class EventsController < ApplicationController
 
   def events_filters
     @eventos = if params[:tipo_de_eventos].present? || (params[:fecha_inicio].present? && params[:fecha_final].present?)
-                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(page: params[:page], per_page: 5)
+                 filtrar_eventos(params[:tipo_de_eventos], params[:fecha_inicio], params[:fecha_final]).paginate(
+                   page: params[:page], per_page: 5
+                 )
                else
                  Event.paginate(page: params[:page], per_page: 5)
                end
@@ -78,12 +80,11 @@ class EventsController < ApplicationController
   end
 
   def export
-      tipo_de_eventos = params[:tipo_de_eventos]
-     fecha_inicio = params[:fecha_inicio]
-      fecha_final = params[:fecha_final]
-    
+    tipo_de_eventos = params[:tipo_de_eventos]
+    fecha_inicio = params[:fecha_inicio]
+    fecha_final = params[:fecha_final]
+
     @eventos = filtrar_eventos(tipo_de_eventos, fecha_inicio, fecha_final)
-    # puts(eventos)
     respond_to do |format|
       format.csv do
         send_data eventos_to_csv(@eventos), filename: 'eventos_exportados.csv'
