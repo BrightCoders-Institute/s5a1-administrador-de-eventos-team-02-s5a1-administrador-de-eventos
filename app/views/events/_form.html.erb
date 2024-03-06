@@ -31,7 +31,7 @@
   </div>
   <div class="field">
     <%= form.label :tipo_de_eventos, "Tipo de evento" %>
-    <%= form.select :tipo_de_eventos, options_for_select(["Público", "Privado"]), {}, class: "form-control" %>
+    <%= form.select :tipo_de_eventos, options_for_select(["Todos", "Público", "Privado"]), {}, class: "form-control" %>
   </div>
   <div class="field">
     <%= form.label :reminder_datetime, "Seleccionar fecha de recordatorio" %>
